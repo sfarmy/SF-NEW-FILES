@@ -1,25 +1,3 @@
-import subprocess
-import sys
-import importlib.util
-
-def ensure_installed(package, import_name=None):
-    if import_name is None:
-        import_name = package.split("[")[0]
-
-    if importlib.util.find_spec(import_name) is None:
-        subprocess.call([sys.executable, "-m", "pip", "install", package])
-
-        # Re-check after install
-        if importlib.util.find_spec(import_name) is None:
-            print(f"Failed to install {package}")
-            sys.exit()
-
-# Required Packages 
-ensure_installed("httpx")
-ensure_installed("httpx[http2]", "httpx")
-ensure_installed("faker")
-ensure_installed("pycryptodome", "Crypto")
-ensure_installed("pycryptodomex", "Cryptodome")
 
 
 # ════════════════════
